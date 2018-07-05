@@ -67,7 +67,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             public ViewHolder(View itemView){
                 super(itemView);
 
-                //perfom findviewby id
+                //perform findviewby id
                 profilePic = itemView.findViewById(R.id.profileImage);
                 username = itemView.findViewById(R.id.twitterHandle);
                 actualTweet = itemView.findViewById(R.id.tvBody);

@@ -15,6 +15,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class TimelineActivity extends AppCompatActivity {
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
 
+    private static final int REQUEST_CODE = 23;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,24 +99,44 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    public void onComposeAction(MenuItem mi){  //use to show compose action, method
+        Intent intent = new Intent(this, ComposeActivity.class);
+        this.startActivityForResult(intent,REQUEST_CODE);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.miCompose:
                 Intent intent = new Intent(this, ComposeActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.miProfile:
-            //    showProfileView();
+
+                startActivity(intent); //wrapping
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // check request code and result code first
+
+        // Use data parameter
+        //Tweet tweet = (Tweet) data.getSerializableExtra("atweet");
+        Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("atweet")); //unwrapping, putitng inside tweet
+        tweets.add(0, tweet);
+        tweetAdapter.notifyItemInserted(0);
+        rvTweets.scrollToPosition(0);
+
+    }
+
 }

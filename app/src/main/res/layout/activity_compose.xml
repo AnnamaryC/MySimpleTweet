@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_blue_bright"
         android:hint="Tweet..."
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="61dp"></EditText>
+        android:layout_centerHorizontal="true"
+        ></EditText>
 
     <Button
         android:id="@+id/tweetbutton"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_bright"
         android:text="Tweet"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="107dp" />
+        android:layout_centerHorizontal="true"
+        />
 
 </android.support.constraint.ConstraintLayout>

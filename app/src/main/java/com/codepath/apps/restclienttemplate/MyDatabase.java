@@ -12,4 +12,6 @@ public abstract class MyDatabase extends RoomDatabase {
 
     // Database name to be used
     public static final String NAME = "MyDataBase";
+
+
 }
