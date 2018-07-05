@@ -20,7 +20,7 @@ public class User {
 
         //extract and fill values
         user.name = object.getString("name");
-        user.uid = object.getLong("uid");
+        user.uid = object.getLong("id");
         user.screenName = object.getString("screen_name");
         user.profileImageUrl = object.getString("profile_image_url");
         return  user;
