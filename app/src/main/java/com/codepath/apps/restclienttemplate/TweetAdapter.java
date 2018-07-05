@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -47,6 +48,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         //populate the views according to this data
         holder.username.setText(tweet.user.name);
         holder.actualTweet.setText(tweet.body);
+
+        Glide.with(context).load(tweet.user.profileImageUrl).into(holder.profilePic);
     }
 
     //to see the tweets
