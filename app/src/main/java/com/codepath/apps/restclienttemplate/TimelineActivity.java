@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,10 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -135,13 +131,15 @@ public class TimelineActivity extends AppCompatActivity {
 
         // Use data parameter
         //Tweet tweet = (Tweet) data.getSerializableExtra("atweet");
-        Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("atweet")); //unwrapping, putitng inside tweet
+        Tweet tweet = Parcels.unwrap(data.getParcelableExtra("atweet")); //unwrapping, putitng inside tweet, put into client
         tweets.add(0, tweet);
         tweetAdapter.notifyItemInserted(0);
         rvTweets.scrollToPosition(0);
 
     }
 
+
+    /*      formatting the date
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
     public String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
@@ -158,6 +156,6 @@ public class TimelineActivity extends AppCompatActivity {
         }
 
         return relativeDate;
-    }
+    }*/
 
 }
