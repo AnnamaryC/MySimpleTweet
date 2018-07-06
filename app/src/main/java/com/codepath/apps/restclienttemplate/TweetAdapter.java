@@ -76,4 +76,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 actualDate = itemView.findViewById(R.id.dateTime);
             }
     }
+
+    
+
 }
