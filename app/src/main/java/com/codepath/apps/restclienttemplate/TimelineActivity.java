@@ -105,10 +105,10 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onComposeAction(MenuItem mi){  //use to show compose action, method
+  /*  public void onComposeAction(MenuItem mi){  //use to show compose action, method
         Intent intent = new Intent(this, ComposeActivity.class);
         this.startActivityForResult(intent,REQUEST_CODE);
-    }
+    } */ /// ******REDUNDANT, function to show compose is in onOptionItemSelected, AND shows tweet after composing on timeline
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -117,7 +117,8 @@ public class TimelineActivity extends AppCompatActivity {
             case R.id.miCompose:
                 Intent intent = new Intent(this, ComposeActivity.class);
 
-                startActivity(intent); //wrapping
+                startActivityForResult(intent,REQUEST_CODE); //wrapping
+                                                            //shows tweet after composing on timeline, UNLIKE startActivity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -131,10 +132,13 @@ public class TimelineActivity extends AppCompatActivity {
 
         // Use data parameter
         //Tweet tweet = (Tweet) data.getSerializableExtra("atweet");
-        Tweet tweet = Parcels.unwrap(data.getParcelableExtra("atweet")); //unwrapping, putitng inside tweet, put into client
-        tweets.add(0, tweet);
-        tweetAdapter.notifyItemInserted(0);
-        rvTweets.scrollToPosition(0);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("atweet")); //unwrapping, putitng inside tweet, put into client
+            tweets.add(0, tweet);
+            tweetAdapter.notifyItemInserted(0);
+            rvTweets.scrollToPosition(0);
+        }
+
 
     }
 
